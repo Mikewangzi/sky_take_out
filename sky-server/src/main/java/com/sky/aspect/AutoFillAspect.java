@@ -39,7 +39,7 @@ public class AutoFillAspect {
         //获取到当前被拦截到的方法参数-实体对象
         Object[] args = joinPoint.getArgs();
 
-        if (args == null && args.length == 0) {
+        if (args == null || args.length == 0) {
             return;
         }
 
@@ -49,7 +49,7 @@ public class AutoFillAspect {
         Long id = BaseContext.getCurrentId();
 
         //进行相应参数的赋值
-        if (entity == OperationType.UPDATE) {
+        if (operationType == OperationType.UPDATE) {
             try {
                 Method setUpdateTime= entity.getClass().getDeclaredMethod(AutoFillConstant.SET_UPDATE_TIME, LocalDateTime.class);
                 Method setUpdateUser = entity.getClass().getDeclaredMethod(AutoFillConstant.SET_UPDATE_USER,Long.class);
@@ -59,7 +59,7 @@ public class AutoFillAspect {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-        } else if (entity == OperationType.INSERT) {
+        } else if (operationType == OperationType.INSERT) {
 
             try {
                 Method setUpdateTime= entity.getClass().getDeclaredMethod(AutoFillConstant.SET_UPDATE_TIME, LocalDateTime.class);
