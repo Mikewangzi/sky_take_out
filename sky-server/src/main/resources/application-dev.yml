@@ -11,3 +11,8 @@ sky:
     endpoint: oss-cn-hangzhou.aliyuncs.com
     access-key-secret: dz1MgQ84RgLj2ZglUf3DSptcmPgrMY
     bucket-name: web-mike
+  redis:
+    port: 6379
+    host: localhost
+    password: wzj
+    database: 0

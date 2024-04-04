@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@Api("菜品相关接口")
+@Api(tags = "菜品相关接口")
 @RequestMapping("/admin/dish")
 @Slf4j
 public class DishController {
@@ -64,5 +64,11 @@ public class DishController {
     public Result update(@RequestBody DishDTO dishDTO){
         dishService.updateWithFlavor(dishDTO);
         return Result.success();
+    }
+    @GetMapping("/list")
+    @ApiOperation("根据分类id查询菜品")
+    public Result<List<Dish>> list(Long categoryId){
+        List<Dish> list = dishService.list(categoryId);
+        return Result.success(list);
     }
 }

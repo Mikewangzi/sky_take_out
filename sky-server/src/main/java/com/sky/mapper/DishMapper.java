@@ -35,4 +35,10 @@ public interface DishMapper {
     void update(Dish dish);
 
     void deleteBatch(List<Long> ids);
+
+    @Select("select a.* from dish a left join setmeal_dish s on a.id=s.dish_id" +
+            " where s.setmeal_id=#{id}")
+    List<Dish> selectBySetmealId(Long id);
+
+    List<Dish> list(Dish dish);
 }
